@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ma Playlist de Films</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Formulaire pour ajouter un film -->
+  <form (ngSubmit)="addMovie()">
+    <ion-item>
+      <ion-label position="stacked">Titre du Film</ion-label>
+      <ion-input [(ngModel)]="movieTitle" name="title" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Genre</ion-label>
+      <ion-input [(ngModel)]="movieGenre" name="genre" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Année de sortie</ion-label>
+      <ion-input [(ngModel)]="movieYear" name="year" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Ajouter à la Playlist</ion-button>
+  </form>
+
+
+  <!-- Affichage de la playlist -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Ma Playlist</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let movie of playlist; let i = index">
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>Genre: {{ movie.genre }}</p>
+        <p>Année: {{ movie.year }}</p>
+      </ion-label>
+      <ion-button color="danger" fill="outline" (click)="removeMovie(i)">Supprimer</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
